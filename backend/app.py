@@ -26,6 +26,18 @@ except:
 print("--------------------------------------------------")
 print("Dobot conectado! Iniciando servidor")
 
-@app.get("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+# rota que recebe as coordenadas desejadas e movimenta o robô
+@app.post("/movement")
+def coordinates():
+    (x, y, z, r, j1, j2, j3, j4) = request.form
+    return 200
+
+# rota que retorna as coordenadas da posição atual do robo
+@app.post("/position")
+def position():
+    try:
+        (x, y, z, r, j1, j2, j3, j4) = dobot.pose()
+        return {x,y,z,j1,j2,j3,j4}, 200
+
+    except Exception as e:
+        return e, 500
