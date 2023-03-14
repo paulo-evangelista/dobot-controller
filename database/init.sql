@@ -1,0 +1,14 @@
+CREATE DATABASE IF NOT EXISTS db;
+USE db;
+CREATE TABLE IF NOT EXISTS `positions` (
+	`id` INT(20) NOT NULL AUTO_INCREMENT,
+	`x` INT(20),
+	`y` INT(20),
+	`z` INT(20),
+	`r` INT(20),
+	`j1` INT(20),
+	`j2` INT(20),
+	`j3` INT(20),
+	`j4` INT(20),
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;

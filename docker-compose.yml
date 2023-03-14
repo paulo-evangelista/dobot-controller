@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  db:
+    image: mysql:8
+    restart: always
+    command: --init-file /data/application/init.sql
+    environment:
+      MYSQL_DATABASE: "dobot"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "password"
+    ports:
+      - "3002:3306"
+    expose:
+      - "3306"
+    volumes:
+      - my-db:/var/lib/mysql
+      - ./database/init.sql:/data/application/init.sql
+volumes:
+  my-db:
