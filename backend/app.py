@@ -16,8 +16,8 @@ print("Testando conexão com banco de dados...")
 print("--------------------------------------------------")
 try:
     connection = pymysql.connect(
-        host='db',
-        port=3306,
+        host='127.0.0.1',
+        port=3002,
         user='user',
         password='password',
         database='db',
