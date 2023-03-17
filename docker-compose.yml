@@ -16,5 +16,15 @@ services:
     volumes:
       - my-db:/var/lib/mysql
       - ./database/init.sql:/data/application/init.sql
+  api:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+
 volumes:
   my-db:
