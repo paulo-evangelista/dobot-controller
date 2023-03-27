@@ -1,0 +1,158 @@
+[gd_scene load_steps=3 format=3 uid="uid://cutuxej3ec7fc"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_qo0ol"]
+
+[sub_resource type="Theme" id="Theme_gl0mn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qo0ol")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1144.0
+offset_bottom = 642.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_gl0mn")
+
+[node name="atualizar" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Atualizar posição"
+
+[node name="label4" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "                                           
+       
+ 
+ "
+
+[node name="Última posição" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Última posição:"
+
+[node name="ProgressBar1" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProgressBar2" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProgressBar3" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="label5" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "                                           
+       
+ 
+ "
+
+[node name="Última posição2" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Penúltima posição:"
+
+[node name="ProgressBar4" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProgressBar5" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProgressBar6" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
+layout_mode = 2
+text = " 
+
+"
+
+[node name="Junta1container" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/Junta1container"]
+layout_mode = 2
+text = "                                                                      Junta 1 -> rotação"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/Junta1container"]
+layout_mode = 2
+text = "            Esquerda                                                                                                             Direita                    "
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/Junta1container"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
+layout_mode = 2
+text = " 
+
+"
+
+[node name="Junta2container" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/Junta2container"]
+layout_mode = 2
+text = "                                                                       Junta 2 -> altura"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/Junta2container"]
+layout_mode = 2
+text = "            Cima                                                                                                                      Baixo                    "
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/Junta2container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
+layout_mode = 2
+text = " 
+
+"
+
+[node name="junta3container" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/junta3container"]
+layout_mode = 2
+text = "                                                                      Junta 3 -> estica"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/junta3container"]
+layout_mode = 2
+text = "            Encolhido                                                                                                             Esticado                    "
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/junta3container"]
+layout_mode = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+body_size_limit = 0
+timeout = 10.0
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/atualizar" to="." method="_on_atualizar_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
