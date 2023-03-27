@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from controller import Controller
+from backend.api.controller import Controller
 from serial.tools import list_ports
 import pymysql
 
