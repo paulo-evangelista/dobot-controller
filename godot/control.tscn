@@ -23,6 +23,7 @@ custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 650)
 layout_mode = 2
 size_flags_vertical = 4
 
@@ -31,7 +32,7 @@ layout_mode = 2
 theme = SubResource("Theme_gl0mn")
 
 [node name="atualizar" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(90, 0)
+custom_minimum_size = Vector2(90, 50)
 layout_mode = 2
 text = "Atualizar posição"
 
@@ -61,6 +62,11 @@ max_value = 78.0
 layout_mode = 2
 min_value = -100.0
 
+[node name="voltarUltima" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Voltar para essa posição"
+
 [node name="label5" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
@@ -87,8 +93,13 @@ max_value = 78.0
 layout_mode = 2
 min_value = -100.0
 
+[node name="voltarPenultima2" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Voltar para essa posição"
+
 [node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(20, 650)
 layout_mode = 2
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
@@ -98,6 +109,7 @@ custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(770, 0)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
@@ -166,4 +178,12 @@ text = "            Encolhido                                                   
 layout_mode = 2
 min_value = -100.0
 
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 650)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/atualizar" to="." method="_on_atualizar_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/voltarUltima" to="." method="_on_voltar_ultima_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/voltarPenultima2" to="." method="_on_voltar_penultima_pressed"]
