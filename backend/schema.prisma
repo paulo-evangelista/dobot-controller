@@ -1,0 +1,17 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:database/database.db"
+}
+
+generator db {
+  provider  = "prisma-client-py"
+  interface = "sync"
+}
+
+model Positions {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  j1        Float
+  j2        Float
+  j3        Float
+}

@@ -155,4 +155,4 @@ body_size_limit = 0
 timeout = 10.0
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/atualizar" to="." method="_on_atualizar_pressed"]
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
