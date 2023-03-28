@@ -63,6 +63,27 @@ def teste():
     # retorna o json
     return jsonify(result), 200
 
+#repete as ultimas posições gravadas no banco de dados
+@app.get("/repeatLastPositions")
+def repeat():
+
+    query_data = Positions.prisma().find_many(take=3, order={"id": "desc"})
+
+    result = []
+    for i in query_data: result.append(i.__dict__)
+
+    for i in query_data:
+        dobot._set_ptp_cmd(
+            x=i.j1,
+            y=i.j2,
+            z=i.j3,
+            r=4,
+            wait=True,
+            mode=pydobot.enums.PTPMode.MOVJ_ANGLE
+            )
+        
+    return "ok", 200
+
 #rota que recebe um id, busca no banco de dados e move o dobot para a posição correspondente
 @app.post("/move")
 def move():
@@ -84,8 +105,7 @@ def move():
 
     # Transforma o objeto retornado pelo db em um dicionário
     positions_dict = data.__dict__
-    print(positions_dict)
-    print("OI", pydobot.enums.PTPMode.MOVJ_XYZ.value)
+
     # move o dobot para a posição correspondente
     dobot.pose()
     dobot._set_ptp_cmd(

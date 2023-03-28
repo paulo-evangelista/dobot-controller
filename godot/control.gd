@@ -1,7 +1,6 @@
 extends Control
 
 var ultimoID = 0
-var penultimoID = 0
 var loading_screen = preload("res://loading.tscn")
 var instance = loading_screen.instantiate()
 # Called when the node enters the scene tree for the first time.
@@ -25,7 +24,8 @@ func _get_request_completed(result, response_code, headers, body):
 	var response = json.get_data()
 	print(response)
 
-
+		#ultimo ID
+	ultimoID = response[0]["id"]
 		#junta1
 	$MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/Junta1container/ProgressBar.value=response[0]["j1"]
 		#junta2
@@ -34,20 +34,25 @@ func _get_request_completed(result, response_code, headers, body):
 	$MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/junta3container/ProgressBar.value=response[0]["j3"]
 
 		#ultima junta1
-	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar1.value=response[1]["j1"]
+	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar7.value=response[0]["j1"]
 		#ultima junta2
-	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar2.value=response[1]["j2"]
+	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar8.value=response[0]["j2"]
 		#ultima junta3
-	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar3.value=response[1]["j3"]
-	ultimoID = response[1]["id"]
+	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar9.value=response[0]["j3"]
 	
 		#penultima junta1
-	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar4.value=response[2]["j1"]
+	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar1.value=response[1]["j1"]
 		#penultima junta2
-	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar5.value=response[2]["j2"]
+	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar2.value=response[1]["j2"]
 		#penultima junta3
+	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar3.value=response[1]["j3"]
+	
+		#antepenultima junta1
+	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar4.value=response[2]["j1"]
+		#antepenultima junta2
+	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar5.value=response[2]["j2"]
+		#antepenultima junta3
 	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar6.value=response[2]["j3"]
-	penultimoID = response[2]["id"]
 
 
 func makePost(id: int):
@@ -65,12 +70,27 @@ func _http_request_completed(result, response_code, headers, body):
 	instance.queue_free()
 	instance = loading_screen.instantiate()
 	
-	
 func _on_voltar_ultima_pressed():
 	print(ultimoID)
 	makePost(ultimoID)
-
-
+	
 func _on_voltar_penultima_pressed():
-	print(penultimoID)
-	makePost(penultimoID)
+	print(ultimoID -1)
+	makePost(ultimoID -1)
+
+
+func _on_voltar_antepenultima_pressed():
+	makePost(ultimoID - 2)
+
+
+
+
+
+func _on_repetir_pressed():
+	add_child(instance)
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request_completed.connect(self._http_request_completed)
+	var error = http_request.request("http://127.0.0.1:3000/repeatLastPositions")
+	if error != OK:
+		push_error("An error occurred in the HTTP request.")
