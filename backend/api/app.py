@@ -11,39 +11,45 @@ db.connect()
 register(db)
 app = Flask(__name__)
 
+#----------------------------Setup do Dobot--------------------------------#
 
+# Lista as portas de COM disponiveis
+available_ports = list_ports.comports()
+print(f'Portas de comunicação disponíveis: {[x.device for x in available_ports]}')
 
-# available_ports = list_ports.comports()
-# print(f'Portas de comunicação disponíveis: {[x.device for x in available_ports]}')
+# define uma porta padrão para previnir comportamentos inesperados
 dobotPort = "COM3"
 
+# cria uma janela de dialogo para que o usuário selecione a porta de comunicaçao que deseja utilizar (entre as disponiveis)
+sg.theme('SystemDefault')
+layout = [  [sg.Text('Selecione a porta de comunicação do Dobot:')],
+            [sg.Text('Portas disponiveis:'), sg.Combo(values=[x.device for x in available_ports])],
+            [sg.Button('Ok')]]
+window = sg.Window('Bem vindo', layout)
 
+# enquanto a janela estiver aberta, aguarda o usuário selecionar uma porta e clicar em ok
+while True:
+    event, values = window.read()
+    print('You entered ', values[0])
+    if event == sg.WIN_CLOSED or event == 'Ok': # if user closes window or clicks cancel
+        dobotPort = values[0]
+        break
+window.close()
 
-# sg.theme('SystemDefault')
-# layout = [  [sg.Text('Selecione a porta de comunicação do Dobot:')],
-#             [sg.Text('Portas disponiveis:'), sg.Combo(values=[x.device for x in available_ports])],
-#             [sg.Button('Ok')]]
-
-# # Create the Window
-# window = sg.Window('Bem vindo', layout)
-# # Event Loop to process "events" and get the "values" of the inputs
-# while True:
-#     event, values = window.read()
-#     print('You entered ', values[0])
-#     if event == sg.WIN_CLOSED or event == 'Ok': # if user closes window or clicks cancel
-#         dobotPort = values[0]
-#         break
-
-# window.close()
-
+# tenta conectar com o dobot na porta selecionada pelo usuário
 try:
     dobot = pydobot.Dobot(port=dobotPort, verbose=True)
+
+# caso não consiga, exibe uma mensagem de erro e encerra o programa
 except:
     sg.popup('Erro ao conectar com o Dobot. Verifique se a porta selecionada está correta e se o Dobot está ligado.', title='Erro')
     exit()
+
+#----------------------------Rotas--------------------------------#
+
 # grava a posição atual do dobot no banco de dados e retorna os 3 últimos registros
 @app.get("/getLastPositions")
-def teste():
+def last():
 
     # pega as posições atuais do dobot
     dobot_positions = dobot.pose()
@@ -55,7 +61,7 @@ def teste():
     # pega os 3 registros mais recentes do banco de dados
     query_data = Positions.prisma().find_many(take=3, order={"id": "desc"})
 
-    # Os regitros são retornados como um arr de objetos, então é necessário transformar
+    # Os registros são retornados como um arr de objetos, então é necessário transformar
     # em um arr de dicionários para então podermos serializar um json
     result = []
     for i in query_data: result.append(i.__dict__)
@@ -63,16 +69,18 @@ def teste():
     # retorna o json
     return jsonify(result), 200
 
-#repete as ultimas posições gravadas no banco de dados
+
+#repete as 3 ultimas posições gravadas no banco de dados
 @app.get("/repeatLastPositions")
 def repeat():
 
+    # pega os 3 registros mais recentes do banco de dados
     query_data = Positions.prisma().find_many(take=3, order={"id": "desc"})
 
-    result = []
-    for i in query_data: result.append(i.__dict__)
-
+    # for que passa por cada posição recebida
     for i in query_data:
+
+        # move o dobot para a posição
         dobot._set_ptp_cmd(
             x=i.j1,
             y=i.j2,
@@ -82,7 +90,9 @@ def repeat():
             mode=pydobot.enums.PTPMode.MOVJ_ANGLE
             )
         
+    # retorna ok
     return "ok", 200
+
 
 #rota que recebe um id, busca no banco de dados e move o dobot para a posição correspondente
 @app.post("/move")
@@ -116,8 +126,10 @@ def move():
         wait=True,
         mode=pydobot.enums.PTPMode.MOVJ_ANGLE
         )
+    
     # retorna status de success
     return "ok", 200
 
+# inicia o servidor na porta 3000
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000, debug=True,use_reloader=False)
