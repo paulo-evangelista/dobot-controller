@@ -15,10 +15,6 @@ run/main_scene="res://control.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
-[autoload]
-
-Global="*res://Global.gd"
-
 [rendering]
 
 renderer/rendering_method="mobile"
