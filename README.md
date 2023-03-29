@@ -5,29 +5,32 @@
 # dobot-controller
 Plataforma que permite controlar o Dobot Magician Lite, com um modelo 3D em tempo real
 
+- **Vídeo demonstração:** https://photos.app.goo.gl/du6HN2J5HaDLSP2s7
+
+
 ## Para iniciar a api (em modo de desenvolvimento), execute os comandos abaixo, em ordem, no terminal dentro da pasta `dobot-controller`
 
-`cd backend`
+1° - `cd backend`
 
-`python -m venv venv`
+2° - `python -m venv venv`
 
-`cd venv\Scripts`
+3° - `cd venv\Scripts`
 
-- Caso esteja utilizando o PowerShell, rode `.\Activate.ps1`
-- Caso esteja utilizando o Command Prompt, rode `activate.bat`
+4° -  Caso esteja utilizando o PowerShell, rode `.\Activate.ps1`
+   -  Caso esteja utilizando o Command Prompt, rode `activate.bat`
 
-`cd ..\..\api`
+5° - `cd ..\..\api`
 
-`pip install -r requirements.txt`
+6° - `pip install -r requirements.txt`
 
-`cd ..`
+7° - `cd ..`
 
-`prisma generate`
+8° - `prisma generate`
 
-`cd api`
+9° - `cd api`
 
 - Agora, conecte o Dobot Magician e ligue-o
 
-`python app.py`
+10° - `python app.py`
 
 ### Pronto! agora é só acessar a pasta `executable` e executar a interface!
