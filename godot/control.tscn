@@ -1,14 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cutuxej3ec7fc"]
+[gd_scene load_steps=7 format=3 uid="uid://cutuxej3ec7fc"]
 
 [ext_resource type="Script" path="res://control.gd" id="1_7juwj"]
+[ext_resource type="Texture2D" uid="uid://lljwvn3t6kpd" path="res://Ellipse 1.png" id="2_d7hha"]
+[ext_resource type="Texture2D" uid="uid://dx536jdojopp3" path="res://Ellipse 2.png" id="3_vvh2s"]
 
 [sub_resource type="Theme" id="Theme_gl0mn"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfgya"]
+bg_color = Color(0.2, 0.670588, 0.733333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpvkg"]
+bg_color = Color(0.490196, 0.631373, 0.627451, 1)
+
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchor_right = 1.371
 anchor_bottom = 1.0
+offset_right = -556.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7juwj")
@@ -141,10 +149,11 @@ text = "
 
 "
 
-[node name="atualizar" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
+[node name="atualizar" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(90, 50)
 layout_mode = 2
-text = "Atualizar posição"
+text = "
+"
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3"]
 layout_mode = 2
@@ -218,8 +227,58 @@ layout_mode = 2
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 
+[node name="Container" type="CanvasLayer" parent="."]
+
+[node name="CanvasLayer" type="ColorRect" parent="Container"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = -1
+anchor_right = 0.025
+anchor_bottom = 0.078
+offset_left = 1031.0
+offset_right = 1462.5
+offset_bottom = 597.456
+
+[node name="Ellipse1" type="Sprite2D" parent="Container"]
+position = Vector2(1268, 390)
+rotation = -3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_d7hha")
+
+[node name="ColorRect" type="ColorRect" parent="Container"]
+offset_left = 1214.0
+offset_top = 438.0
+offset_right = 1322.0
+offset_bottom = 478.0
+color = Color(0.603922, 0.603922, 0.603922, 1)
+
+[node name="Label" type="Label" parent="Container/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 11
+text = "DOBOT MAGICIAN
+LITE"
+
+[node name="Button" type="Button" parent="Container"]
+offset_left = 1033.0
+offset_top = 3.0
+offset_right = 1495.0
+offset_bottom = 123.0
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_qfgya")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cpvkg")
+text = "Atualizar posição"
+
+[node name="Ellipse2" type="Sprite2D" parent="Container"]
+position = Vector2(1108, 451)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_vvh2s")
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ultima" to="." method="_on_voltar_ultima_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/penultima" to="." method="_on_voltar_penultima_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/antepenultima" to="." method="_on_voltar_antepenultima_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/Repetir" to="." method="_on_repetir_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer3/atualizar" to="." method="_on_atualizar_pressed"]
+[connection signal="pressed" from="Container/Button" to="." method="_on_atualizar_pressed"]

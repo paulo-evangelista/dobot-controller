@@ -17,11 +17,10 @@ func _on_atualizar_pressed():
 		push_error("An error occurred in the HTTP request.")
 
 func _get_request_completed(result, response_code, headers, body):
-	instance.queue_free()
-	instance = loading_screen.instantiate()
 	var json = JSON.new()
 	json.parse(body.get_string_from_utf8())
 	var response = json.get_data()
+	placeRedDot(response)
 	print(response)
 
 		#ultimo ID
@@ -54,6 +53,8 @@ func _get_request_completed(result, response_code, headers, body):
 		#antepenultima junta3
 	$MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ProgressBar6.value=response[2]["j3"]
 
+	instance.queue_free()
+	instance = loading_screen.instantiate()
 
 func makePost(id: int):
 	add_child(instance)
@@ -83,9 +84,6 @@ func _on_voltar_antepenultima_pressed():
 	makePost(ultimoID - 2)
 
 
-
-
-
 func _on_repetir_pressed():
 	add_child(instance)
 	var http_request = HTTPRequest.new()
@@ -94,3 +92,7 @@ func _on_repetir_pressed():
 	var error = http_request.request("http://127.0.0.1:3000/repeatLastPositions")
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
+
+# função para o visualizador de posição da garra
+func placeRedDot(data):
+	pass
