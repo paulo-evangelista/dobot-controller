@@ -66,8 +66,16 @@ def last():
     result = []
     for i in query_data: result.append(i.__dict__)
 
+    # cria um dicionário com os dados que serão retornados
+    # 'joints' -> três ultimas posições gravadas no banco de dados de juntas
+    # 'coordinates' -> posição atual do dobot em coordenadas cartesianas (X e Y), para a visualização no frontend
+    data = {
+        "joints": result,
+        "coordinates": [dobot_positions[0],dobot_positions[1]]
+    }
+
     # retorna o json
-    return jsonify(result), 200
+    return jsonify(data), 200
 
 
 #repete as 3 ultimas posições gravadas no banco de dados
