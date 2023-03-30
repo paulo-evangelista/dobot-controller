@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cutuxej3ec7fc"]
 
 [ext_resource type="Script" path="res://control.gd" id="1_7juwj"]
-[ext_resource type="Texture2D" uid="uid://lljwvn3t6kpd" path="res://Ellipse 1.png" id="2_d7hha"]
+[ext_resource type="Texture2D" uid="uid://dld3u42865sy2" path="res://Component 2.png" id="2_2xxki"]
 [ext_resource type="Texture2D" uid="uid://dx536jdojopp3" path="res://Ellipse 2.png" id="3_vvh2s"]
 
 [sub_resource type="Theme" id="Theme_gl0mn"]
@@ -239,23 +239,26 @@ offset_right = 1462.5
 offset_bottom = 597.456
 
 [node name="Ellipse1" type="Sprite2D" parent="Container"]
-position = Vector2(1268, 390)
+position = Vector2(1269, 413.705)
 rotation = -3.14159
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_d7hha")
+scale = Vector2(0.285218, 0.276395)
+texture = ExtResource("2_2xxki")
 
 [node name="ColorRect" type="ColorRect" parent="Container"]
 offset_left = 1214.0
-offset_top = 438.0
+offset_top = 364.0
 offset_right = 1322.0
-offset_bottom = 478.0
+offset_bottom = 417.0
 color = Color(0.603922, 0.603922, 0.603922, 1)
 
-[node name="Label" type="Label" parent="Container/ColorRect"]
-layout_mode = 1
+[node name="Label" type="Label" parent="Container"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1214.0
+offset_top = 374.0
+offset_right = 1214.0
+offset_bottom = 368.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 11
@@ -273,9 +276,18 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_cpvkg")
 text = "Atualizar posição"
 
 [node name="Ellipse2" type="Sprite2D" parent="Container"]
-position = Vector2(1108, 451)
+position = Vector2(1269, 439)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_vvh2s")
+
+[node name="Label2" type="Label" parent="Container"]
+offset_left = 1121.0
+offset_top = 129.0
+offset_right = 1420.0
+offset_bottom = 162.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Posição aproximada da garra:"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/ultima" to="." method="_on_voltar_ultima_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer/penultima" to="." method="_on_voltar_penultima_pressed"]
