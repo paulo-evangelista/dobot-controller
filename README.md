@@ -15,6 +15,7 @@ Plataforma que permite controlar o Dobot Magician Lite, com um modelo 3D em temp
 - atualização v2.0.0 - https://photos.app.goo.gl/oomaRNydcEyQQ2pT8
 
 ## Descrição da solução
+![screenshot](godot/screenshot.jpg)
 A solução:
 - Mostra a posição aproximada da garra do robô
 - Mostra a porcentagem de flexão de cada uma das juntas
